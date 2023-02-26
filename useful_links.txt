@@ -1,0 +1,8 @@
+Redis messaging: https://redis.com/solutions/use-cases/messaging/
+Lose-Coupling architecture: https://www.linkedin.com/pulse/loose-coupling-microservice-architecture-patrick-van-vuuren
+Event-Driven architecture: https://solace.com/what-is-event-driven-architecture/
+Message broker vs event brokers: https://danieltammadge.com/2021/11/message-brokers-vs-event-brokers/
+Redis vs RabbitMQ: https://cloudinfrastructureservices.co.uk/rabbitmq-vs-redis-message-brokers/
+Redis serial example: https://www.spigotmc.org/threads/bungeecord-network-best-way-to-manage-data.238309/
+Making a better mc server: https://blog.entryrise.com/?_gl=1*y9u9hq*_ga*MTQ5OTk5NDQ1NC4xNjc2MDM2MzM4*_ga_2EE9KX1Z2L*MTY3NjAzNjMzOC4xLjAuMTY3NjAzNjMzOC42MC4wLjA.
+These sur les multiserveur une map: https://www.theses.fr/2015PA066090.pdf

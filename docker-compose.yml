@@ -1,0 +1,96 @@
+version: '3'
+
+services:
+  main_server:
+    build: containers/main_server
+    container_name: mainServer
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 25565:25565
+    volumes:
+      - main_server_data:${CONTAINER_SERVER_FILES_PATH} # this mkdir the directory
+    env_file:
+      - .env
+    networks:
+      - servers
+    depends_on:
+      - bungeecord_proxy
+      
+  hub_server:
+    build: containers/hub_server
+    container_name: hubServer
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 25566:25566
+    volumes:
+      - hub_server_data:${CONTAINER_SERVER_FILES_PATH} # this mkdir the directory
+    env_file:
+      - .env
+    networks:
+      - servers
+    depends_on:
+      - bungeecord_proxy
+
+  bungeecord_proxy:
+    build: containers/bungeecord
+    container_name: bungeecordProxy
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 25577:25577
+    volumes:
+      - bungeecord_proxy_data:${CONTAINER_PROXY_FILES_PATH} # this mkdir the directory
+    env_file:
+      - .env
+    networks:
+      - servers
+    depends_on:
+      - redis
+
+  redis:
+    build: containers/redis
+    container_name: redis
+    restart: always
+    volumes:
+        - redis_data:/data/redis
+    ports:
+      - 6379:6379
+    networks:
+      - servers
+
+volumes:
+  main_server_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '${VOLUME_PATH}/main_server'
+
+  hub_server_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '${VOLUME_PATH}/hub_server'
+
+  bungeecord_proxy_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '${VOLUME_PATH}/bungeecord'
+
+  redis_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '${VOLUME_PATH}/redis'
+
+networks:
+  servers:
