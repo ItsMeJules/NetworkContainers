@@ -5,37 +5,37 @@ all		:	${NAME}
 ${NAME}	:	build up
 
 build: volume
-	sudo docker-compose build
+	docker-compose build
 
 volume:
-	sudo mkdir -p /home/jules/Dev/Java/Minecraft/network/data/main_server
+	mkdir -p /home/jules/Dev/Java/Minecraft/network/network_containers/data/main_server
 	
-	sudo mkdir -p /home/jules/Dev/Java/Minecraft/network/data/hub_server
+	mkdir -p /home/jules/Dev/Java/Minecraft/network/network_containers/data/hub_server
 
-	sudo mkdir -p /home/jules/Dev/Java/Minecraft/network/data/bungeecord/
+	mkdir -p /home/jules/Dev/Java/Minecraft/network/network_containers/data/bungeecord/
 
-	sudo mkdir -p /home/jules/Dev/Java/Minecraft/network/data/redis/
+	mkdir -p /home/jules/Dev/Java/Minecraft/network/network_containers/data/redis/
 
 rmvolume:
-	sudo rm -rf data/*
+	rm -rf data/*
 
 connect_main_server:
-	sudo docker attach main_server
+	docker attach main_server
 
 container_tty:
-	sudo docker exec -it main_server sh
+	docker exec -it main_server sh
 
 up:
-	sudo docker-compose up -d --remove-orphans
+	docker-compose up -d --remove-orphans
 
 down:
-	sudo docker-compose down
+	docker-compose down
 
 stop:
-	sudo docker-compose stop
+	docker-compose stop
 
 rm: stop
-	sudo docker-compose rm
+	docker-compose rm
 
 re: clean ${NAME}
 
