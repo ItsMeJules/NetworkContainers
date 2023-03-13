@@ -16,7 +16,7 @@ permissions:
 timeout: 30000
 log_commands: false
 network_compression_threshold: 256
-online_mode: true
+online_mode: false
 disabled_commands:
 - disabledcommandhere
 servers:
@@ -45,7 +45,7 @@ listeners:
   max_players: 1
   tab_size: 60
   force_default_server: false
-ip_forward: true
+ip_forward: false
 remote_ping_timeout: 5000
 prevent_proxy_connections: false
 groups:

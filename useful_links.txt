@@ -6,3 +6,4 @@ Redis vs RabbitMQ: https://cloudinfrastructureservices.co.uk/rabbitmq-vs-redis-m
 Redis serial example: https://www.spigotmc.org/threads/bungeecord-network-best-way-to-manage-data.238309/
 Making a better mc server: https://blog.entryrise.com/?_gl=1*y9u9hq*_ga*MTQ5OTk5NDQ1NC4xNjc2MDM2MzM4*_ga_2EE9KX1Z2L*MTY3NjAzNjMzOC4xLjAuMTY3NjAzNjMzOC42MC4wLjA.
 These sur les multiserveur une map: https://www.theses.fr/2015PA066090.pdf
+Kotlin help: https://developer.android.com/codelabs/java-to-kotlin?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fkotlin-for-java%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fjava-to-kotlin#0

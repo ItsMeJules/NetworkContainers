@@ -63,6 +63,17 @@ services:
     networks:
       - servers
 
+  mongodb:
+    build: containers/mongodb
+    container_name: mongodb
+    restart: always
+    volumes:
+      - mongo_data:/data/mongodb
+    ports:
+      - 27017:27017
+    networks:
+      - servers
+
 volumes:
   main_server_data:
     driver: local
@@ -91,6 +102,13 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '${VOLUME_PATH}/redis'
+      
+  mongo_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '${VOLUME_PATH}/mongodb'
 
 networks:
   servers:

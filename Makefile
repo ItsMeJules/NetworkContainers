@@ -16,6 +16,8 @@ volume:
 
 	mkdir -p /home/jules/Dev/Java/Minecraft/network/network_containers/data/redis/
 
+	mkdir -p /home/jules/Dev/Java/Minecraft/network/network_containers/data/mongodb/
+
 rmvolume:
 	rm -rf data/*
 
