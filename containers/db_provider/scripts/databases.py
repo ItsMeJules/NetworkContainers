@@ -14,7 +14,7 @@ def init_pubsub(redispy):
 
 def init_mongodb(mongo):
     print("initializing collections...")
-    init_collections(mongo[MONGODB_DATABASE_NAME], MONGODB_UUID_LOOKUP_CHANNEL_RESPONSE)
+    init_collections(mongo[MONGODB_DATABASE_NAME], MONGODB_UUID_LOOKUP_COLLECTION)
 
 def init_collections(db, *names):
     collections_name = db.list_collection_names()
@@ -27,6 +27,6 @@ def init_collections(db, *names):
 
         print("creating collection", name)
 
-        if name == MONGODB_UUID_LOOKUP_CHANNEL_RESPONSE:
-            collection = db[MONGODB_UUID_LOOKUP_CHANNEL_RESPONSE]
-            collection.create_index([(MONGODB_UUID_LOOKUP_CHANNEL_RESPONSE_NAME_FIELD, pymongo.ASCENDING)])
+        if name == MONGODB_UUID_LOOKUP_COLLECTION:
+            collection = db[MONGODB_UUID_LOOKUP_COLLECTION]
+            collection.create_index([(MONGODB_UUID_LOOKUP_COLLECTION_NAME_FIELD, pymongo.ASCENDING)])
