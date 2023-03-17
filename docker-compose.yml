@@ -51,6 +51,7 @@ services:
       - servers
     depends_on:
       - redis
+      - db_provider
 
   redis:
     build: containers/redis
@@ -80,6 +81,9 @@ services:
     restart: always
     networks:
       - servers
+    depends_on:
+      - redis
+      - mongodb
 
 volumes:
   main_server_data:

@@ -1,5 +1,3 @@
-import redis
-
 import pymongo
 
 from constants import *
@@ -8,8 +6,9 @@ from channel_handler import pubsub_listener
 def init_pubsub(redispy):
     pubsub = redispy.pubsub()
 
-    print(f"subscribing to channels {UUID_LOOKUP_CHANNEL, PUNISHMENT_CHANNEL}...")
-    pubsub.subscribe(UUID_LOOKUP_CHANNEL, PUNISHMENT_CHANNEL)
+    print(f"subscribing to channels {channels}...")
+    for channel in channels:
+        pubsub.subscribe(UUID_LOOKUP_CHANNEL, PUNISHMENT_CHANNEL, REDIS_SERVER_HEARTBEAT_CHANNEL)
     
     return pubsub
 
@@ -29,5 +28,5 @@ def init_collections(db, *names):
         print("creating collection", name)
 
         if name == UUID_LOOKUP_COLLECTION:
-            collection = db[UUID_LOOKUP_CHANNEL]
-            collection.create_index([(UUID_LOOKUP_COLLECTION_NAME_FIELD, pymongo.ASCENDING)]) 
+            collection = db[UUID_LOOKUP_COLLECTION]
+            collection.create_index([(UUID_LOOKUP_COLLECTION_NAME_FIELD, pymongo.ASCENDING)])

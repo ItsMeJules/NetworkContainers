@@ -29,6 +29,6 @@ if __name__ == "__main__":
     repeating_thread.start()
 
     print("listening for messages...")
-    pubsub_listener(pubsub, mongo)
+    pubsub_listener(pubsub, mongo["server"], redispy)
 
     repeating_thread.join()
