@@ -74,6 +74,13 @@ services:
     networks:
       - servers
 
+  db_provider:
+    build: containers/db_provider
+    container_name: dbProvider
+    restart: always
+    networks:
+      - servers
+
 volumes:
   main_server_data:
     driver: local
