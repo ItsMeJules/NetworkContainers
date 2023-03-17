@@ -14,7 +14,7 @@ def uuid_lookup_message(message, db, redispy):
     data["name"] = result[MONGODB_UUID_LOOKUP_COLLECTION_NAME_FIELD] if result else name
     data["uuid"] = result[MONGODB_UUID_LOOKUP_COLLECTION_UUID_FIELD] if result else None
 
-    redispy.publish(REDIS_UUID_LOOKUP_CHANNEL_RESPONSE, json.dumps(data))
+    redispy.publish(REDIS_UUID_LOOKUP_RESPONSE_CHANNEL, json.dumps(data))
 
 def punishment_message(message, db, redispy):
     print(message)
@@ -22,7 +22,7 @@ def punishment_message(message, db, redispy):
 def save_data(db, redispy):
     mapped_values = {}
 
-    for name, uuid in redispy.hgetall(MONGODB_UUID_LOOKUP_COLLECTION).items():
+    for name, uuid in redispy.hgetall(REDIS_UUID_LOOKUP_HSET).items():
         mapped_values[name.decode('utf-8')] = UUID(uuid.decode("utf-8"))
 
     found_names = [doc["name"] for doc in db[MONGODB_UUID_LOOKUP_COLLECTION].find({'name': {'$in': list(mapped_values.keys())}})]
