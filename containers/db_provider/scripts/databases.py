@@ -8,13 +8,13 @@ def init_pubsub(redispy):
 
     print(f"subscribing to channels {channels}...")
     for channel in channels:
-        pubsub.subscribe(UUID_LOOKUP_CHANNEL, PUNISHMENT_CHANNEL, REDIS_SERVER_HEARTBEAT_CHANNEL)
+        pubsub.subscribe(REDIS_UUID_LOOKUP_CHANNEL, REDIS_PUNISHMENT_CHANNEL, REDIS_SERVER_HEARTBEAT_CHANNEL)
     
     return pubsub
 
 def init_mongodb(mongo):
     print("initializing collections...")
-    init_collections(mongo[DATABASE_NAME], UUID_LOOKUP_COLLECTION)
+    init_collections(mongo[MONGODB_DATABASE_NAME], MONGODB_UUID_LOOKUP_CHANNEL_RESPONSE)
 
 def init_collections(db, *names):
     collections_name = db.list_collection_names()
@@ -27,6 +27,6 @@ def init_collections(db, *names):
 
         print("creating collection", name)
 
-        if name == UUID_LOOKUP_COLLECTION:
-            collection = db[UUID_LOOKUP_COLLECTION]
-            collection.create_index([(UUID_LOOKUP_COLLECTION_NAME_FIELD, pymongo.ASCENDING)])
+        if name == MONGODB_UUID_LOOKUP_CHANNEL_RESPONSE:
+            collection = db[MONGODB_UUID_LOOKUP_CHANNEL_RESPONSE]
+            collection.create_index([(MONGODB_UUID_LOOKUP_CHANNEL_RESPONSE_NAME_FIELD, pymongo.ASCENDING)])
