@@ -1,5 +1,3 @@
-from redis import Redis
-from pymongo import MongoClient
 from threading import Lock
 
 mutex = Lock()

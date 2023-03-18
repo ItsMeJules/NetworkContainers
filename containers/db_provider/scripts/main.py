@@ -6,12 +6,14 @@ from autosaver import *
 from channel_handler import *
 from databases import *
 
+
 def gracefully_stop(signum, frame):
     print("gracefully quitting program...")
-    if (redispy is not None):
+    if redispy is not None:
         redispy.close()
         mongo.close()
     sys.exit(0)
+
 
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, gracefully_stop)
