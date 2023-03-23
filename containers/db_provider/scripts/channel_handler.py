@@ -11,7 +11,8 @@ def uuid_lookup_message(message, db, redispy):
     name = message["name"]
     result = db[MONGODB_UUID_LOOKUP_COLLECTION].find_one({MONGODB_UUID_LOOKUP_COLLECTION_NAME_FIELD: name})
 
-    data = {"name": result[MONGODB_UUID_LOOKUP_COLLECTION_NAME_FIELD] if result else name,
+    data = {"server-id": message["server-id"],
+            "name": result[MONGODB_UUID_LOOKUP_COLLECTION_NAME_FIELD] if result else name,
             "uuid": result[MONGODB_UUID_LOOKUP_COLLECTION_UUID_FIELD] if result else None}
 
     redispy.publish(REDIS_UUID_LOOKUP_RESPONSE_CHANNEL, json.dumps(data))
